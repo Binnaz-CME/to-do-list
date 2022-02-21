@@ -1,28 +1,20 @@
 import React from "react";
+import ToDo from "./ToDo";
 
-function List() {
-  
-  function handleClickFinished() {
-    console.log("click finished")
-  }
-
-  function handleClickRemove() {
-    console.log("click remove")
-  }
-
+function List(props) {
   return (
     <section>
-      <p>Activity</p>
-      <button
-        onClick={handleClickFinished}
-      >
-        Mark as finished
-      </button>
-      <button
-        onClick={handleClickRemove}
-      >
-        Remove
-      </button>
+      {props.toDos.map((toDo) => {
+        return (
+          <ToDo
+            key={toDo.title}
+            data={toDo}
+            isDone={props.isDone}
+            removeToDo={props.removeToDo}
+            finishToDo={props.finishToDo}
+          />
+        );
+      })}
     </section>
   );
 }

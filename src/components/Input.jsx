@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import styles from "./styles/input.module.css";
 
-function Input() {
+function Input(props) {
+  const [inputText, setInputText] = useState("");
 
-    function handleClickAdd() {
-        console.log('Click add')
-    }
+  function handleChange(e) {
+    const value = e.target.value;
+    setInputText(value);
+  }
+
 
   return (
-    <div>
-      <input type="text" placeholder="to-do" />
+    <section>
+      <input
+        className={styles.input}
+        type="text"
+        placeholder="Write your to-do"
+        onChange={handleChange}
+        value={inputText}
+      />
       <button
-        onClick={handleClickAdd}
+        className={styles.button}
+        onClick={() => props.addToDo(inputText)}
       >
-        Add to-do
+        Add To-Do
       </button>
-    </div>
+    </section>
   );
 }
 
