@@ -27,6 +27,7 @@ function App() {
 
   return (
     <main className="App">
+      <h1 className='title'>My To-Do List</h1>
       <Input addToDo={addToDo} />
       <List
         toDos={toDos}
