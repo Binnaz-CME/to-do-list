@@ -1,23 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles/todo.module.css";
 
-function ToDo(props) {
+function ToDo({ data, toDos, removeToDo }) {
+  const [isDone, setIsDone] = useState(false);
 
   function handleRemove() {
-    const title = props.data.title;
-    props.removeToDo(title);
+    const title = data.title;
+    removeToDo(title);
   }
 
   function handleFinished() {
-    const title = props.data.title;
-    props.finishToDo(title);
+    const title = data.title;
+    finishToDo(title);
+  }
+
+  function finishToDo(title) {
+    const doneToDo = [...toDos].find(
+      (toDo) => toDos.title !== title
+    );
+    if (doneToDo) {
+      setIsDone(!isDone);
+    }
   }
 
   return (
     <div className={styles.todo}>
-      <p className={props.isDone ? styles.lineThrough : null}>{props.data.title}</p>
+      <p style={{ textDecoration: isDone ? "line-through" : "none" }}>
+        {data.title}
+      </p>
       <button className={styles.button} onClick={handleFinished}>
-        Finished
+        Done
       </button>
       <button className={styles.button} onClick={handleRemove}>
         Remove

@@ -1,17 +1,19 @@
 import React from "react";
 import ToDo from "./ToDo";
+import styles from "./styles/todo.module.css";
 
-function List(props) {
+function List({ isDone, removeToDo, toDos }) {
   return (
     <section>
-      {props.toDos.map((toDo) => {
+      {toDos.map((toDo) => {
         return (
           <ToDo
+            className={styles.toDo}
             key={toDo.title}
             data={toDo}
-            isDone={props.isDone}
-            removeToDo={props.removeToDo}
-            finishToDo={props.finishToDo}
+            isDone={isDone}
+            removeToDo={removeToDo}
+            toDos={toDos}
           />
         );
       })}

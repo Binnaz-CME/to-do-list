@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import styles from "./styles/input.module.css";
 
-function Input(props) {
+function Input({ addToDo }) {
   const [inputText, setInputText] = useState("");
 
   function handleChange(e) {
     const value = e.target.value;
     setInputText(value);
   }
-
 
   return (
     <section>
@@ -19,10 +18,7 @@ function Input(props) {
         onChange={handleChange}
         value={inputText}
       />
-      <button
-        className={styles.button}
-        onClick={() => props.addToDo(inputText)}
-      >
+      <button className={styles.button} onClick={() => addToDo(inputText)}>
         Add To-Do
       </button>
     </section>
